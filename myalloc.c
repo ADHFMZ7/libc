@@ -1,5 +1,7 @@
 #include <stdlib.h>
 
+#define HEAP_SIZE 64000 // 
+
 size_t size = sizeof(size_t) + sizeof(void*) + sizeof(int);
 
 //The struct that holds meta data of block
