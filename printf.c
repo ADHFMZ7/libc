@@ -3,7 +3,7 @@
 int main()
 {
 
-	write(STDOUT_FILENO, "Ahmad Aldasouqi\n", 17);
+	write(STDOUT_FILENO, "Nathan Diamond\n", 16);
 
 }
 
