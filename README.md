@@ -14,3 +14,7 @@ space is found. It then allocates the memory and appends itself to the linked li
 The free function can similarly use the provided pointer to remove the block and it's metadata from the 
 linked list, allowing malloc to overwrite the block of memory.
 
+### TODO:
+1. Add free function.
+1. Allign allocated memory.
+
