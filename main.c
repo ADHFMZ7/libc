@@ -21,13 +21,19 @@ int main()
 // printf("The character at memory location %p is %c\n", c, *c);
 //
 
-  char* ptr = (char *)myalloc(6 * sizeof(char));
+  char *ptr = (char *)myalloc(6 * sizeof(char));
 
-  printf("The address of the data is %p \n", ptr);
 
+  //printf("The address of the first name data is %p \n", ptr);
   strcpy(ptr, "AHMAD");
 
+
   printf("%s\n", ptr);
+  char *ptr2 = (char *)myalloc(10 * sizeof(char));
+
+  strcpy(ptr2, "ALDASOUQI");
+
+  //printf("The address of the first name data is %p \n", ptr);
 
   return 0;
 }	

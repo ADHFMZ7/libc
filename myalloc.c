@@ -1,14 +1,13 @@
 #include <assert.h>
 #include <stdlib.h>
 #include <unistd.h>
+#include <stdio.h>
 #include "myalloc.h"
+
 
 // TODO:
 // 1) Implement freeing memory
-//	
-
-
-
+// 2) 
 
 #define HEAP_SIZE 64000 // defines the size of the heap
 
@@ -28,10 +27,12 @@ metadata *allocate_space(metadata *prev, size_t size)
 	}
 
 	// call sbrk to create block of size + size of metadata
-	void *memory = sbrk(META_SIZE + size)	;
+	metadata *memory = sbrk(META_SIZE + size)	;
 
 	// catch errors thrown by sbrk syscall
 	assert(memory != (void *) -1 && "sbrk failed to allocate memory.");
+
+	*memory = block;	
 
 	return memory;
 }
@@ -66,9 +67,10 @@ void *myalloc(size_t size)
 	// We want to initialize the linked list if it is empty
 	if (!head)
 	{
+
 		head = allocate_space(NULL, size);
 
-		return head + META_SIZE;
+		return head + 1;
 	}
 	else if (find_free(size + META_SIZE))
 	{
@@ -85,7 +87,7 @@ void *myalloc(size_t size)
 			current = current->next;
 		}
 
-		return (allocate_space(current, size) + META_SIZE);
+		return allocate_space(current, size) + 1;
 	}
 
 }
