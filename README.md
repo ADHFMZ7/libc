@@ -22,3 +22,7 @@ linked list, allowing malloc to overwrite the block of memory.
 ## Input/Output
 
 The library will implement fgets and puts for simple input and output to the terminal.
+
+
+### Resources used
+- https://chromium.googlesource.com/chromiumos/docs/+/master/constants/syscalls.md
