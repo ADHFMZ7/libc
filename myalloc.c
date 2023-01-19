@@ -1,5 +1,6 @@
 #include <assert.h>
 #include <stdlib.h>
+#include <stdio.h>
 #include <unistd.h>
 #include "myalloc.h"
 
@@ -36,8 +37,9 @@ metadata *allocate_space(metadata *prev, size_t size)
 	return memory;
 }
 
-// TODO: fix this depending on how i implement free
-// So far returns the final node if no free space is found.
+// Returns the first free memory block that is the right
+// size, otherwise, returns a NULL pointer.
+// TODO: implement splitting free block.
 metadata *find_free(size_t size)
 {
 
@@ -47,11 +49,12 @@ metadata *find_free(size_t size)
 	{
 		if (current->size >= size && current->free) 
 		{
+			printf("found freed block with address %p\n", current+1);
 			return current;
 		}
 		current = current->next;
 	}
-	return current;
+	return NULL;
 }
 
 
@@ -62,7 +65,8 @@ void *myalloc(size_t size)
 	{
 		return NULL;
 	}
-	
+	metadata *mem;
+
 	// We want to initialize the linked list if it is empty
 	if (!head)
 	{
@@ -71,10 +75,10 @@ void *myalloc(size_t size)
 
 		return head + 1;
 	}
-	else if (find_free(size + META_SIZE))
+	else if ((mem = find_free(size)))
 	{
-
-		return NULL;
+		printf("allocating memory in freed bloack %p\n", mem+1);
+		return mem;
 
 	}
 	// otherwise, we want to check if there is a free block of the desired size
@@ -92,9 +96,16 @@ void *myalloc(size_t size)
 }
 
 
-void myfree(void* location)
+void myfree(void* ptr)
 {
+	// This should mark the block of memory as free,
+	// allowing it to be overwritten.
+	
+	metadata* block = ((metadata *)ptr) - 1;
 
-
+	block->free = 1;
 
 }
+
+
+

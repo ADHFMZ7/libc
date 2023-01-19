@@ -24,7 +24,7 @@ int main()
   char *ptr = (char *)myalloc(6 * sizeof(char));
 
 
-  //printf("The address of the first name data is %p \n", ptr);
+  printf("The address of the first name data is %p \n", ptr);
   strcpy(ptr, "AHMAD\n");
 
   my_puts(ptr);
@@ -32,7 +32,12 @@ int main()
 
   strcpy(ptr2, "ALDASOUQI");
 
-  //printf("The address of the first name data is %p \n", ptr);
+
+  myfree(ptr);
+  
+  printf("The address of the first name data is %p \n", ptr);
+
+  char *ptr3 = (char *)myalloc(6 * sizeof(char));
 
   return 0;
 }	
