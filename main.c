@@ -1,7 +1,7 @@
-#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include "myalloc.h"
+#include "myio.h"
 
 int main()
 {
@@ -25,10 +25,9 @@ int main()
 
 
   //printf("The address of the first name data is %p \n", ptr);
-  strcpy(ptr, "AHMAD");
+  strcpy(ptr, "AHMAD\n");
 
-
-  printf("%s\n", ptr);
+  my_puts(ptr);
   char *ptr2 = (char *)myalloc(10 * sizeof(char));
 
   strcpy(ptr2, "ALDASOUQI");
