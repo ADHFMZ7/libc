@@ -6,8 +6,7 @@
 
 
 // TODO:
-// 1) Implement freeing memory
-// 2) 
+// 1) Implement splitting freed memory
 
 #define HEAP_SIZE 64000 // defines the size of the heap
 
@@ -21,7 +20,8 @@ metadata *allocate_space(metadata *prev, size_t size)
 	// create a new metadata struct	
 	metadata block ={.next = NULL, .size = size, .free = 0};
 
-	if (prev != NULL){
+	if (prev != NULL)
+	{
 		// set prev blocks next to this block
 		prev->next = &block;
 	}
@@ -49,7 +49,6 @@ metadata *find_free(size_t size)
 	{
 		if (current->size >= size && current->free) 
 		{
-			printf("found freed block with address %p\n", current+1);
 			return current;
 		}
 		current = current->next;
@@ -77,7 +76,6 @@ void *myalloc(size_t size)
 	}
 	else if ((mem = find_free(size)))
 	{
-		printf("allocating memory in freed bloack %p\n", mem+1);
 		return mem + 1;
 
 	}
