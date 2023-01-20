@@ -1,4 +1,5 @@
 #include <stdlib.h>
+#include <stdio.h>
 #include <string.h>
 #include "myalloc.h"
 #include "myio.h"
@@ -38,6 +39,14 @@ int main()
   printf("The address of the first name data is %p \n", ptr);
 
   char *ptr3 = (char *)myalloc(6 * sizeof(char));
+
+  strcpy(ptr, "DAMHA\n");
+  printf("ITS COPIED\n");
+
+  my_puts(ptr3);
+
+  myfree(ptr2);
+  myfree(ptr3);
 
   return 0;
 }	

@@ -78,7 +78,7 @@ void *myalloc(size_t size)
 	else if ((mem = find_free(size)))
 	{
 		printf("allocating memory in freed bloack %p\n", mem+1);
-		return mem;
+		return mem + 1;
 
 	}
 	// otherwise, we want to check if there is a free block of the desired size
