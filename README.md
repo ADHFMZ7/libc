@@ -3,7 +3,7 @@
 This C library reimplements some of the C standard library functions to help myself better understand them.
 
 ## TODO:
-1. Add free function.
+1. Split freed blocks to reduce fragmentation.
 1. Allign allocated memory.
 
 ## dynamic allocation (malloc, free) 
