@@ -21,7 +21,8 @@ linked list, allowing malloc to overwrite the block of memory.
 
 ## Input/Output
 
-The library implements fgets and puts for simple input and output to the terminal.
+The library implements fgets and puts for simple input and output to the terminal using the linux read and 
+write system calls.
 
 
 ### Resources used
