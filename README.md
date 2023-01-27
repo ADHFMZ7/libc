@@ -5,6 +5,7 @@ This C library reimplements some of the C standard library functions to help mys
 ## TODO:
 1. Split freed blocks to reduce fragmentation.
 1. Allign allocated memory.
+1. implement strcpy/memcpy
 
 ## dynamic allocation (malloc, free) 
 
