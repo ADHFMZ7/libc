@@ -17,29 +17,28 @@ metadata* head = NULL;						 // head of linked list
 // Will call sbrk to allocate desired amount of space and create a new metablock with it.
 metadata *allocate_space(metadata *prev, size_t size)
 {
-	// create a new metadata struct	
-	metadata block ={.next = NULL, .size = size, .free = 0};
+	// call sbrk to create block of size + size of metadata
+	metadata *block = (metadata *) sbrk(META_SIZE + size);
+
+	// set metadata of new block
+	block->next = NULL;
+	block->size = size;
+	block->free = 0;
 
 	if (prev != NULL)
 	{
 		// set prev blocks next to this block
-		prev->next = &block;
+		prev->next = block;
 	}
 
-	// call sbrk to create block of size + size of metadata
-	metadata *memory = sbrk(META_SIZE + size)	;
-
 	// catch errors thrown by sbrk syscall
-	assert(memory != (void *) -1 && "sbrk failed to allocate memory.");
+	assert(block != (void *) -1 && "sbrk failed to allocate memory.");
 
-	*memory = block;	
-
-	return memory;
+	return block;
 }
 
 // Returns the first free memory block that is the right
 // size, otherwise, returns a NULL pointer.
-// TODO: implement splitting free block.
 metadata *find_free(size_t size)
 {
 
@@ -100,6 +99,11 @@ void myfree(void* ptr)
 	// allowing it to be overwritten.
 	
 	metadata* block = ((metadata *)ptr) - 1;
+	
+	if (block->next && block->next->free == 1) {
+		block->size += block->next->size + META_SIZE;
+		block->next = block->next->next;
+	}
 
 	block->free = 1;
 
