@@ -3,8 +3,9 @@
 This C library reimplements some of the C standard library functions to help myself better understand them.
 
 ## TODO:
-1. Add free function.
+1. Split freed blocks to reduce fragmentation.
 1. Allign allocated memory.
+1. implement strcpy/memcpy
 
 ## dynamic allocation (malloc, free) 
 
@@ -21,7 +22,8 @@ linked list, allowing malloc to overwrite the block of memory.
 
 ## Input/Output
 
-The library implements fgets and puts for simple input and output to the terminal.
+The library implements fgets and puts for simple input and output to the terminal using the linux read and 
+write system calls.
 
 
 ### Resources used
